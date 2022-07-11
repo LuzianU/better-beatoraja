@@ -122,12 +122,14 @@ public class MainLoader extends Application {
 			discord.startup();
 		}
 
-		for(SongData song : getScoreDatabaseAccessor().getSongDatas(SongUtils.illegalsongs)) {
-			MainLoader.putIllegalSong(song.getSha256());
-		}
-		if(illegalSongs.size() > 0) {
-			JOptionPane.showMessageDialog(null, "This Application detects " + illegalSongs.size() + " illegal BMS songs. \n Remove them, update song database and restart.", "Error", JOptionPane.ERROR_MESSAGE);
-			System.exit(1);
+		if(!config.isDisableIllegalSongsCheck()) {
+			for (SongData song : getScoreDatabaseAccessor().getSongDatas(SongUtils.illegalsongs)) {
+				MainLoader.putIllegalSong(song.getSha256());
+			}
+			if (illegalSongs.size() > 0) {
+				JOptionPane.showMessageDialog(null, "This Application detects " + illegalSongs.size() + " illegal BMS songs. \n Remove them, update song database and restart.", "Error", JOptionPane.ERROR_MESSAGE);
+				System.exit(1);
+			}
 		}
 
 		try {
