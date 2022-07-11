@@ -30,6 +30,7 @@ public class BetterBeatorajaView implements Initializable {
 
     @FXML
     public CheckBox disableIllegalSongsCheck;
+    public CheckBox enableRealTimeSkinUpdate;
 
     private PlayerConfig player;
     private Config config;
@@ -52,9 +53,11 @@ public class BetterBeatorajaView implements Initializable {
             return;
         }
         config.setDisableIllegalSongsCheck(disableIllegalSongsCheck.isSelected());
+        config.setEnableRealTimeSkinUpdate(enableRealTimeSkinUpdate.isSelected());
     }
 
     public void update(Config config) {
         disableIllegalSongsCheck.setSelected(config.isDisableIllegalSongsCheck());
+        enableRealTimeSkinUpdate.setSelected(config.isEnableRealTimeSkinUpdate());
     }
 }
