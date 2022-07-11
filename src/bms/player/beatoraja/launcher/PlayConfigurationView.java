@@ -251,6 +251,9 @@ public class PlayConfigurationView implements Initializable {
 	@FXML
     private StreamEditorView streamController;
 
+	@FXML
+	private BetterBeatorajaView betterBeatorajaController;
+
 	private Config config;
 	private PlayerConfig player;
 
@@ -368,6 +371,8 @@ public class PlayConfigurationView implements Initializable {
 		resourceController.update(config);
 
 		skinController.update(config);
+
+		betterBeatorajaController.update(config);
         // int b = Boolean.valueOf(config.getJKOC()).compareTo(false);
 
         usecim.setSelected(config.isCacheSkinImage());
@@ -467,6 +472,7 @@ public class PlayConfigurationView implements Initializable {
 
 		irController.update(player);
 		streamController.update(player);
+		betterBeatorajaController.update(player);
 
 		txtTwitterPIN.setDisable(true);
 		twitterPINButton.setDisable(true);
@@ -568,6 +574,7 @@ public class PlayConfigurationView implements Initializable {
 		inputController.commit();
 		irController.commit();
 		streamController.commit();
+		betterBeatorajaController.commit();
 
 		updatePlayConfig();
 		skinController.commit();

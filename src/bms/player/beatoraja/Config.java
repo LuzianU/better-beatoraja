@@ -179,6 +179,8 @@ public class Config implements Validatable {
 	private float keyvolume = 0.5f;
 	private float bgvolume = 0.5f;
 
+	private boolean disableIllegalSongsCheck = false;
+
 	public Config() {
 	}
 
@@ -591,6 +593,14 @@ public class Config implements Validatable {
 
 	public void setUseResolution(boolean useResolution) {
 		this.useResolution = useResolution;
+	}
+
+	public boolean isDisableIllegalSongsCheck() {
+		return disableIllegalSongsCheck;
+	}
+
+	public void setDisableIllegalSongsCheck(boolean disableIllegalSongsCheck) {
+		this.disableIllegalSongsCheck = disableIllegalSongsCheck;
 	}
 
 	public enum DisplayMode {
