@@ -36,18 +36,8 @@ public class BetterBeatorajaView implements Initializable {
 
     public void initialize(URL arg0, ResourceBundle arg1) {
     }
-
-    public void update(Config config) {
-        System.out.println(">BB< update config");
-        this.config = config;
-        if(this.config == null) {
-            return;
-        }
-        config.setDisableIllegalSongsCheck(disableIllegalSongsCheck.isSelected());
-    }
-
-    public void update(PlayerConfig player) {
-        System.out.println(">BB< update player");
+    public void commitPlayer(PlayerConfig player) {
+        System.out.println(">BB< commit player");
         this.player = player;
         if(this.player == null) {
             return;
@@ -55,10 +45,16 @@ public class BetterBeatorajaView implements Initializable {
         //enableRequest.setSelected(this.player.getRequestEnable());
     }
 
-    public void commit() {
-        if(this.player == null) {
+    public void commitConfig(Config config) {
+        System.out.println(">BB< commit config");
+        this.config = config;
+        if(this.config == null) {
             return;
         }
-        //player.setRequestEnable(enableRequest.isSelected());
+        config.setDisableIllegalSongsCheck(disableIllegalSongsCheck.isSelected());
+    }
+
+    public void update(Config config) {
+        disableIllegalSongsCheck.setSelected(config.isDisableIllegalSongsCheck());
     }
 }

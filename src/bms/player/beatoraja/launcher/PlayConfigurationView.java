@@ -371,8 +371,6 @@ public class PlayConfigurationView implements Initializable {
 		resourceController.update(config);
 
 		skinController.update(config);
-
-		betterBeatorajaController.update(config);
         // int b = Boolean.valueOf(config.getJKOC()).compareTo(false);
 
         usecim.setSelected(config.isCacheSkinImage());
@@ -380,6 +378,8 @@ public class PlayConfigurationView implements Initializable {
 
 		enableIpfs.setSelected(config.isEnableIpfs());
 		ipfsurl.setText(config.getIpfsUrl());
+
+		betterBeatorajaController.update(config);
 
 		if(players.getItems().contains(config.getPlayername())) {
 			players.setValue(config.getPlayername());
@@ -472,7 +472,6 @@ public class PlayConfigurationView implements Initializable {
 
 		irController.update(player);
 		streamController.update(player);
-		betterBeatorajaController.update(player);
 
 		txtTwitterPIN.setDisable(true);
 		twitterPINButton.setDisable(true);
@@ -514,6 +513,7 @@ public class PlayConfigurationView implements Initializable {
 
 		config.setUseDiscordRPC(discord.isSelected());
 
+		betterBeatorajaController.commitConfig(config);
 		commitPlayer();
 
 		Config.write(config);
@@ -574,7 +574,7 @@ public class PlayConfigurationView implements Initializable {
 		inputController.commit();
 		irController.commit();
 		streamController.commit();
-		betterBeatorajaController.commit();
+		betterBeatorajaController.commitPlayer(player);
 
 		updatePlayConfig();
 		skinController.commit();
