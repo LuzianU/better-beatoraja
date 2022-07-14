@@ -464,6 +464,11 @@ public class MusicResult extends AbstractResult {
 	}
 
 	@Override
+	public SkinType getCorrespondingSkinType() {
+		return SkinType.RESULT;
+	}
+
+	@Override
 	public void dispose() {
 		super.dispose();
 	}

@@ -139,6 +139,11 @@ public class SkinConfiguration extends MainState {
 		}
 	}
 
+	@Override
+	public SkinType getCorrespondingSkinType() {
+		return SkinType.SKIN_SELECT;
+	}
+
 	private void changeSkinType(SkinType type) {
 		saveSkinHistory();
 		this.type = type != null ? type : SkinType.PLAY_7KEYS;

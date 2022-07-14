@@ -403,6 +403,8 @@ public class MainController extends ApplicationAdapter {
 
 	private final StringBuilder message = new StringBuilder();
 
+	public static boolean requireSkinUpdate = false;
+
 	@Override
 	public void render() {
 //		input.poll();
@@ -561,6 +563,15 @@ public class MainController extends ApplicationAdapter {
 				updateSong = null;
 			}
         }
+
+		if(requireSkinUpdate) {
+			Logger.getGlobal().info("Updating skin " + current.getCorrespondingSkinType().getName() +"...");
+			current.loadSkin(current.getCorrespondingSkinType());
+			current.getSkin().prepare(getCurrentState());
+			// fix font
+			selector.getBarRender().updateBar();
+			requireSkinUpdate = false;
+		}
 	}
 
 	@Override

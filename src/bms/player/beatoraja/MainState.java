@@ -244,6 +244,8 @@ public abstract class MainState {
 		}
 	}
 	
+	public abstract SkinType getCorrespondingSkinType();
+	
 	public enum MainStateType {
 		MUSICSELECT,DECIDE,PLAY,RESULT,COURSERESULT,CONFIG,SKINCONFIG;
 	}

@@ -7,6 +7,7 @@ import java.util.*;
 import java.util.stream.Stream;
 
 import bms.player.beatoraja.Config;
+import bms.player.beatoraja.MainController;
 import bms.player.beatoraja.PlayerConfig;
 import bms.player.beatoraja.SkinConfig;
 import bms.player.beatoraja.skin.*;
@@ -156,6 +157,8 @@ public class SkinConfigurationView implements Initializable {
 			}
 		}
 	}
+
+	private boolean afterFirstCommit = false;
     
     @FXML
 	public void commitSkinType() {
@@ -167,6 +170,11 @@ public class SkinConfigurationView implements Initializable {
 			SkinConfig skin = new SkinConfig(selected.getPath().toString());
 			skin.setProperties(getProperty());
 			player.getSkin()[selected.getSkinType().getId()] = skin;
+
+			if(afterFirstCommit) {
+				MainController.requireSkinUpdate = true;
+			}
+			afterFirstCommit = true;
 		} else if (mode != null) {
 			player.getSkin()[mode.getId()] = null;
 		}

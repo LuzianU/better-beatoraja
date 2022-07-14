@@ -544,4 +544,9 @@ public class KeyConfiguration extends MainState {
 			shape = null;
 		}
 	}
+
+	@Override
+	public SkinType getCorrespondingSkinType() {
+		return SkinType.KEY_CONFIG;
+	}
 }

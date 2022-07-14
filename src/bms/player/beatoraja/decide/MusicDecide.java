@@ -66,4 +66,9 @@ public class MusicDecide extends MainState {
 	public void dispose() {
 		super.dispose();
 	}
+
+	@Override
+	public SkinType getCorrespondingSkinType() {
+		return SkinType.DECIDE;
+	}
 }

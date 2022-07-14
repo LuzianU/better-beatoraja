@@ -682,6 +682,11 @@ public class MusicSelector extends MainState {
 		}
 	}
 
+	@Override
+	public SkinType getCorrespondingSkinType() {
+		return SkinType.MUSIC_SELECT;
+	}
+
 	public int getPanelState() {
 		return panelstate;
 	}

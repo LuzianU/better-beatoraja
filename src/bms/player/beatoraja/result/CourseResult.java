@@ -298,6 +298,11 @@ public class CourseResult extends AbstractResult {
 	}
 
 	@Override
+	public SkinType getCorrespondingSkinType() {
+		return SkinType.COURSE_RESULT;
+	}
+
+	@Override
 	public void dispose() {
 		super.dispose();
 	}

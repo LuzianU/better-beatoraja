@@ -972,6 +972,11 @@ public class BMSPlayer extends MainState {
 		return this.judge.getJudgeCount(judge, fast);
 	}
 
+	@Override
+	public SkinType getCorrespondingSkinType() {
+		return getSkinType();
+	}
+
 	public JudgeManager getJudgeManager() {
 		return judge;
 	}
