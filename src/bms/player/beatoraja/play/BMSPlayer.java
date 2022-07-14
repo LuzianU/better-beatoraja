@@ -239,6 +239,12 @@ public class BMSPlayer extends MainState {
 
 			Array<PatternModifier> mods = new Array<PatternModifier>();
 
+			// Auto scratch feature
+			if(config.isEnableAutoScratch() && autoplay.mode == BMSPlayerMode.Mode.PLAY) {
+				mods.add(new AutoScratchModifier(model.getMode().scratchKey));
+				score = false;
+			}
+
 			if(config.getScrollMode() > 0) {
 				mods.add(new ScrollSpeedModifier(config.getScrollMode() - 1, config.getScrollSection(), config.getScrollRate()));
 			}
