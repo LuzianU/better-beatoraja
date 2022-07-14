@@ -564,7 +564,7 @@ public class MainController extends ApplicationAdapter {
 			}
         }
 
-		if(requireSkinUpdate) {
+		if(requireSkinUpdate && config.isEnableRealTimeSkinUpdate()) {
 			Logger.getGlobal().info("Updating skin " + current.getCorrespondingSkinType().getName() +"...");
 			current.loadSkin(current.getCorrespondingSkinType());
 			current.getSkin().prepare(getCurrentState());

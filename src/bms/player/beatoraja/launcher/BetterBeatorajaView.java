@@ -17,6 +17,8 @@ import bms.player.beatoraja.AudioConfig.DriverType;
 import bms.player.beatoraja.AudioConfig.FrequencyType;
 import bms.player.beatoraja.audio.PortAudioDriver;
 import bms.player.beatoraja.song.SongDatabaseAccessor;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -30,12 +32,21 @@ public class BetterBeatorajaView implements Initializable {
 
     @FXML
     public CheckBox disableIllegalSongsCheck;
+    @FXML
     public CheckBox enableRealTimeSkinUpdate;
+    @FXML
+    public CheckBox enableAutoScratch;
 
     private PlayerConfig player;
     private Config config;
 
     public void initialize(URL arg0, ResourceBundle arg1) {
+        enableRealTimeSkinUpdate.selectedProperty().addListener((observable, oldValue, newValue) -> {
+            config.setEnableRealTimeSkinUpdate(enableRealTimeSkinUpdate.isSelected());
+        });
+        enableAutoScratch.selectedProperty().addListener((observable, oldValue, newValue) -> {
+            player.setEnableAutoScratch(enableAutoScratch.isSelected());
+        });
     }
     public void commitPlayer(PlayerConfig player) {
         System.out.println(">BB< commit player");
@@ -43,6 +54,7 @@ public class BetterBeatorajaView implements Initializable {
         if(this.player == null) {
             return;
         }
+        player.setEnableAutoScratch(enableAutoScratch.isSelected());
         //enableRequest.setSelected(this.player.getRequestEnable());
     }
 
@@ -56,8 +68,15 @@ public class BetterBeatorajaView implements Initializable {
         config.setEnableRealTimeSkinUpdate(enableRealTimeSkinUpdate.isSelected());
     }
 
-    public void update(Config config) {
+    public void update(Config config, PlayerConfig player) {
+        this.config = config;
+        this.player = player;
         disableIllegalSongsCheck.setSelected(config.isDisableIllegalSongsCheck());
         enableRealTimeSkinUpdate.setSelected(config.isEnableRealTimeSkinUpdate());
+        enableAutoScratch.setSelected(player.isEnableAutoScratch());
+    }
+
+    public void disableInputs() {
+        disableIllegalSongsCheck.setDisable(true);
     }
 }

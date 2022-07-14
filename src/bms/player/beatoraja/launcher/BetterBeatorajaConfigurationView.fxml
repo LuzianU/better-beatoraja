@@ -22,4 +22,7 @@
     <HBox prefHeight="37.0" prefWidth="723.0">
         <CheckBox fx:id="enableRealTimeSkinUpdate" contentDisplay="CENTER" prefHeight="24.0" prefWidth="723.0" text="%ENABLE_REAL_TIME_Skin_UPDATE" textAlignment="CENTER"/>
     </HBox>
+    <HBox prefHeight="37.0" prefWidth="723.0">
+        <CheckBox fx:id="enableAutoScratch" contentDisplay="CENTER" prefHeight="24.0" prefWidth="723.0" text="%ENABLE_AUTO_SCRATCH" textAlignment="CENTER"/>
+    </HBox>
 </VBox>

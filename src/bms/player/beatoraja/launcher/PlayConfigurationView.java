@@ -379,7 +379,6 @@ public class PlayConfigurationView implements Initializable {
 		enableIpfs.setSelected(config.isEnableIpfs());
 		ipfsurl.setText(config.getIpfsUrl());
 
-		betterBeatorajaController.update(config);
 
 		if(players.getItems().contains(config.getPlayername())) {
 			players.setValue(config.getPlayername());
@@ -387,6 +386,8 @@ public class PlayConfigurationView implements Initializable {
 			players.getSelectionModel().select(0);
 		}
 		updatePlayer();
+
+		betterBeatorajaController.update(config, player);
 
 		try {
 			Class.forName("org.sqlite.JDBC");
@@ -672,6 +673,7 @@ public class PlayConfigurationView implements Initializable {
 		irTab.setDisable(true);
 		streamTab.setDisable(true);
 		controlPanel.setDisable(true);
+		betterBeatorajaController.disableInputs();
 
 		MainLoader.play(null, bms.player.beatoraja.BMSPlayerMode.PLAY, true, config, player, songUpdated);
 	}
