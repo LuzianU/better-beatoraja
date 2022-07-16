@@ -33,17 +33,14 @@ public class BetterBeatorajaView implements Initializable {
     @FXML
     public CheckBox disableIllegalSongsCheck;
     @FXML
-    public CheckBox enableRealTimeSkinUpdate;
-    @FXML
     public CheckBox enableAutoScratch;
+    @FXML
+    public CheckBox saveAutoScratchScores;
 
     private PlayerConfig player;
     private Config config;
 
     public void initialize(URL arg0, ResourceBundle arg1) {
-        enableRealTimeSkinUpdate.selectedProperty().addListener((observable, oldValue, newValue) -> {
-            config.setEnableRealTimeSkinUpdate(enableRealTimeSkinUpdate.isSelected());
-        });
         enableAutoScratch.selectedProperty().addListener((observable, oldValue, newValue) -> {
             player.setEnableAutoScratch(enableAutoScratch.isSelected());
         });
@@ -65,14 +62,12 @@ public class BetterBeatorajaView implements Initializable {
             return;
         }
         config.setDisableIllegalSongsCheck(disableIllegalSongsCheck.isSelected());
-        config.setEnableRealTimeSkinUpdate(enableRealTimeSkinUpdate.isSelected());
     }
 
     public void update(Config config, PlayerConfig player) {
         this.config = config;
         this.player = player;
         disableIllegalSongsCheck.setSelected(config.isDisableIllegalSongsCheck());
-        enableRealTimeSkinUpdate.setSelected(config.isEnableRealTimeSkinUpdate());
         enableAutoScratch.setSelected(player.isEnableAutoScratch());
     }
 

@@ -239,12 +239,6 @@ public class BMSPlayer extends MainState {
 
 			Array<PatternModifier> mods = new Array<PatternModifier>();
 
-			// Auto scratch feature
-			if(config.isEnableAutoScratch() && autoplay.mode == BMSPlayerMode.Mode.PLAY) {
-				mods.add(new AutoScratchModifier(model.getMode().scratchKey));
-				score = false;
-			}
-
 			if(config.getScrollMode() > 0) {
 				mods.add(new ScrollSpeedModifier(config.getScrollMode() - 1, config.getScrollSection(), config.getScrollRate()));
 			}
@@ -264,6 +258,14 @@ public class BMSPlayer extends MainState {
 					assist = Math.max(assist, mod.getAssistLevel() == PatternModifier.AssistLevel.ASSIST ? 2 : 1);
 					score = false;
 				}
+			}
+
+			// Auto scratch feature
+			if(config.isEnableAutoScratch() && autoplay.mode == BMSPlayerMode.Mode.PLAY) {
+				PatternModifier mod = new AutoScratchModifier(model.getMode().scratchKey);
+				mods.add(mod);
+				mod.modify(model);
+				assist = Math.max(assist, 2);
 			}
 
 			if (playinfo.doubleoption >= 2 && (model.getMode() == Mode.BEAT_5K || model.getMode() == Mode.BEAT_7K || model.getMode() == Mode.KEYBOARD_24K)) {

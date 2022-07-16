@@ -181,8 +181,6 @@ public class Config implements Validatable {
 
 	private boolean disableIllegalSongsCheck = false;
 
-	private boolean enableRealTimeSkinUpdate = true;
-
 	public Config() {
 	}
 
@@ -603,14 +601,6 @@ public class Config implements Validatable {
 
 	public void setDisableIllegalSongsCheck(boolean disableIllegalSongsCheck) {
 		this.disableIllegalSongsCheck = disableIllegalSongsCheck;
-	}
-
-	public boolean isEnableRealTimeSkinUpdate() {
-		return enableRealTimeSkinUpdate;
-	}
-
-	public void setEnableRealTimeSkinUpdate(boolean enableRealTimeSkinUpdate) {
-		this.enableRealTimeSkinUpdate = enableRealTimeSkinUpdate;
 	}
 
 	public enum DisplayMode {
