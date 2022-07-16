@@ -18,3 +18,5 @@ b.bat
 *.cim
 .idea/
 /*.log
+/sound/*
+/sound/
