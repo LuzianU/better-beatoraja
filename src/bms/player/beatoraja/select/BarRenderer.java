@@ -2,7 +2,7 @@ package bms.player.beatoraja.select;
 
 import java.io.BufferedInputStream;
 import java.nio.file.*;
-import java.util.HashMap;
+import java.util.*;
 import java.util.logging.Logger;
 import java.util.stream.Stream;
 
@@ -25,7 +25,9 @@ import bms.player.beatoraja.CourseData.CourseDataConstraint;
 import bms.player.beatoraja.CourseData.TrophyData;
 import bms.player.beatoraja.external.BMSSearchAccessor;
 import bms.player.beatoraja.song.*;
+import com.badlogic.gdx.utils.Queue;
 import com.badlogic.gdx.utils.StringBuilder;
+import javafx.util.Pair;
 
 /**
  * 楽曲バー描画用クラス
@@ -96,6 +98,30 @@ public class BarRenderer {
 
 	private final int barlength = 60;
 	private final BarArea[] bararea = new BarArea[barlength];
+
+	public void selectRandomSong() {
+		if(currentsongs.length > 0) {
+			ArrayList<Pair<Integer, SongBar>> pairs = new ArrayList<>();
+
+			for(int i = 0; i < currentsongs.length; i++) {
+				if(currentsongs[i] instanceof SongBar) {
+					if(((SongBar)currentsongs[i]).existsSong()) {
+						pairs.add(new Pair<>(i, (SongBar) currentsongs[i]));
+					}
+				}
+			}
+
+
+			if(pairs.size() > 0) {
+				int r = new Random().nextInt(pairs.size());
+				selectedindex = pairs.get(r).getKey();
+
+				select.getScoreDataProperty().update(currentsongs[selectedindex].getScore(),
+													 currentsongs[selectedindex].getRivalScore());
+				select.selectedBarMoved();
+			}
+		}
+	}
 
 	private static class BarArea {
 		public Bar sd;

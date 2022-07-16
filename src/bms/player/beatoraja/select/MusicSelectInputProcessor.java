@@ -351,6 +351,10 @@ public class MusicSelectInputProcessor {
                 select.executeEvent(EventType.favorite_chart);
     		}
 
+            // select random song
+            if(property.isPressed(input, SELECT_RANDOM_SONG, true)) {
+                select.getBarRender().selectRandomSong();
+            }
         }
 
         // song bar moved
