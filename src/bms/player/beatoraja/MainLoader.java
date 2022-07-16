@@ -56,6 +56,8 @@ public class MainLoader extends Application {
 
 	public static Discord discord;
 
+	private static boolean disableIllegalSongsCheck = false;
+
 	public static void main(String[] args) {
 
 		if(!ALLOWS_32BIT_JAVA && !System.getProperty( "os.arch" ).contains( "64")) {
@@ -121,6 +123,8 @@ public class MainLoader extends Application {
 			discord = new Discord("");
 			discord.startup();
 		}
+
+		disableIllegalSongsCheck = config.isDisableIllegalSongsCheck();
 
 		if(!config.isDisableIllegalSongsCheck()) {
 			for (SongData song : getScoreDatabaseAccessor().getSongDatas(SongUtils.illegalsongs)) {
@@ -248,11 +252,11 @@ public class MainLoader extends Application {
 	}
 
 	public static String[] getIllegalSongs() {
-		return illegalSongs.toArray(new String[illegalSongs.size()]);
+		return disableIllegalSongsCheck ? new String[0] : illegalSongs.toArray(new String[illegalSongs.size()]);
 	}
 
 	public static int getIllegalSongCount() {
-		return illegalSongs.size();
+		return disableIllegalSongsCheck ? 0 : illegalSongs.size();
 	}
 
 	@Override
