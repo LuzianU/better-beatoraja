@@ -1,3 +1,14 @@
+# BetterBeatoraja
+## Features
+- option to disable illegal song check on launch
+- option to enable auto scratch assist
+
+
+- skin now updates instantly without having to reload the scene
+- fixed performance of opening folders and custom database search filters such as density, scratch percentage, etc.
+- in song select, key 4 now selects (but does not instantly play) a randomly selected song
+
+
 # beatoraja
 Codename beatoraja is a Cross-platform rhythm game based on Java and libGDX.
 It works on Windows, Mac OS, and Linux.
