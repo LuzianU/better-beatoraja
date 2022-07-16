@@ -1,6 +1,6 @@
 # BetterBeatoraja
 ## Features
-- option to disable illegal song check on launch
+- option to disable illegal songs check on launch
 - option to enable auto scratch assist
 
 
