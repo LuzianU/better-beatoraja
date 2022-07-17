@@ -773,7 +773,7 @@ public class MainController extends ApplicationAdapter {
 	}
 
 	public static String getVersion() {
-		return VERSION.replace("beatoraja", "LR2oraja (BetterBeatoraja)");
+		return VERSION.replace("beatoraja", "LR2oraja (BetterBeatoraja 1.0)");
 	}
 
 	abstract class UpdateThread extends Thread {
