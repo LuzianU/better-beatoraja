@@ -262,9 +262,6 @@ public class BMSPlayer extends MainState {
 
 			// Auto scratch feature
 			if(config.isEnableAutoScratch() && autoplay.mode == BMSPlayerMode.Mode.PLAY) {
-				PatternModifier mod = new AutoScratchModifier(model.getMode().scratchKey);
-				mods.add(mod);
-				mod.modify(model);
 				assist = Math.max(assist, 2);
 			}
 

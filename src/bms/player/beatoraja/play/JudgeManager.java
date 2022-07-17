@@ -246,6 +246,7 @@ public class JudgeManager {
 		final MainController mc = main.main;
 		final BMSPlayerInputProcessor input = mc.getInputProcessor();
 		final Config config = mc.getPlayerResource().getConfig();
+		final PlayerConfig playerConfig = mc.getPlayerResource().getPlayerConfig();
 		final long now = mc.getNowTime();
 		// 通過系の判定
 		Arrays.fill(next_inclease, false);
@@ -256,6 +257,9 @@ public class JudgeManager {
 			boolean pressed = false;
 			for (int key : laneassign[lane]) {
 				if (input.getKeyState(key)) {
+					if(playerConfig.isEnableAutoScratch() && main.getMode().isScratchKey(lane)) {
+						break;
+					}
 					pressed = true;
 					break;
 				}
@@ -264,6 +268,7 @@ public class JudgeManager {
 				if (note.getTime() <= prevtime) {
 					continue;
 				}
+
 				if (note instanceof LongNote) {
 					// HCN判定
 					final LongNote lnote = (LongNote) note;
@@ -284,7 +289,7 @@ public class JudgeManager {
 					keysound.play(note, config.getAudioConfig().getKeyvolume(), 0);
 				}
 
-				if (autoplay) {
+				if (autoplay || (playerConfig.isEnableAutoScratch() && main.getMode().isScratchKey(lane))) {
 					// ここにオートプレイ処理を入れる
 					if (note instanceof NormalNote && note.getState() == 0) {
 						auto_presstime[laneassign[lane][0]] = now;
@@ -329,7 +334,7 @@ public class JudgeManager {
 				next_inclease[lane] = true;
 			}
 
-			if (autoplay) {
+			if (autoplay || (playerConfig.isEnableAutoScratch() && main.getMode().isScratchKey(lane))) {
 				for (int key : laneassign[lane]) {
 					if (auto_presstime[key] != Long.MIN_VALUE && now - auto_presstime[key] > auto_minduration
 							&& processing[lane] == null) {
@@ -388,7 +393,7 @@ public class JudgeManager {
 				continue;
 			}
 			final long ptime = input.getKeyChangedTime(key);
-			if (ptime == Long.MIN_VALUE) {
+			if (ptime == Long.MIN_VALUE || (playerConfig.isEnableAutoScratch() && main.getMode().isScratchKey(lane))) {
 				continue;
 			}
 			final Lane lanemodel = lanes[lane];
