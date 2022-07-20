@@ -28,6 +28,7 @@ public abstract class TargetProperty {
             targets.add(new StaticTargetProperty("RANK AAA+", 100.0f * 26.0f / 27.0f));
             targets.add(new StaticTargetProperty("MAX", 100.0f));
             targets.add(new NextRankTargetProperty());
+            targets.add(new MyBestTargetProperty());
             available = targets.toArray(new TargetProperty[targets.size()]);
         }
         return available;

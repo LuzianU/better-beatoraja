@@ -4,6 +4,7 @@ import bms.player.beatoraja.*;
 import bms.player.beatoraja.input.BMSPlayerInputProcessor;
 import bms.player.beatoraja.input.KeyCommand;
 import bms.player.beatoraja.input.KeyBoardInputProcesseor.ControlKeys;
+import bms.player.beatoraja.play.MyBestTargetProperty;
 import bms.player.beatoraja.play.TargetProperty;
 import bms.player.beatoraja.select.MusicSelectKeyProperty.MusicSelectKey;
 import bms.player.beatoraja.select.bar.*;
@@ -12,6 +13,7 @@ import bms.player.beatoraja.skin.property.EventFactory.EventType;
 import bms.player.beatoraja.song.SongData;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
+import com.badlogic.gdx.graphics.Color;
 
 import java.util.*;
 import java.util.stream.Collectors;
@@ -201,11 +203,19 @@ public class MusicSelectInputProcessor {
             TargetProperty[] targets = TargetProperty.getAllTargetProperties();
             while(mov > 0) {
                 config.setTarget((config.getTarget() + targets.length - 1) % targets.length);
+
+                if(targets[config.getTarget()] instanceof MyBestTargetProperty)
+                    main.getMessageRenderer().addMessage("[My Best] selected", 2000, Color.RED, 1);
+
                 select.play(SOUND_SCRATCH);
                 mov--;
             }
             while(mov < 0) {
                 config.setTarget((config.getTarget() + 1) % targets.length);
+
+                if(targets[config.getTarget()] instanceof MyBestTargetProperty)
+                    main.getMessageRenderer().addMessage("[My Best] selected", 2000, Color.RED, 1);
+
                 select.play(SOUND_SCRATCH);
                 mov++;
             }
