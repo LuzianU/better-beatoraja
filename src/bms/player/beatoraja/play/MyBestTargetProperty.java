@@ -10,7 +10,8 @@ public class MyBestTargetProperty extends TargetProperty {
         ScoreData now = main.getPlayDataAccessor().readScoreData(main.getPlayerResource().getBMSModel()
                 , main.getPlayerConfig().getLnmode());
 
-        System.out.println(now);
+        if(now == null)
+            return 0;
         return now.getExscore();
     }
 
