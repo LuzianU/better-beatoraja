@@ -1,4 +1,5 @@
 # BetterBeatoraja
+  
 ## Features
 - option to disable illegal songs check on launch
 - option to enable auto scratch assist
@@ -11,6 +12,10 @@
 
 - [LR2oraja](https://github.com/wcko87/lr2oraja/tree/lr2oraja) features
 
+## Troubleshooting
+> **The game appears to be running at 1 fps**
+
+Set `prepareFramePerSecond` in `config.json` to 10000
 
 ## License
 GNU General Public License v3
